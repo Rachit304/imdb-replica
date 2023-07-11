@@ -54,9 +54,9 @@ const Home = () => {
         <span className="top">{title}</span>
         <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" />
       </Link>
-      <div className="magic-wrapper">
+      <div className="magic-wrapper" style={{ overflowX: "hidden" }}>
         <div className="content-wrapper magic">
-          <ScrollMenu className="scroll-menu">
+          <ScrollMenu >
             {movies.map((movie) => (
               <Card key={movie.id} movie={movie} />
             ))}

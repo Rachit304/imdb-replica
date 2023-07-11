@@ -57,10 +57,14 @@
     height: 312px;
     overflow-y: hidden;
     width: 100%;
+    
+  overflow-x: hidden;
    }
    
    .magic {
     padding-bottom: 30px;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden;
    }
   
    .link {
