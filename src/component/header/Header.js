@@ -1,9 +1,13 @@
 import React from 'react'
 import './Header.css'
-import {BrowserRouter, Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import SearchBar from './Searchbar';
  
 const Header = () => {
+
+    
+    // Do something with the movies data, e.g., update state or display the results
+
   return (
     <div className='header'>
         <div className='headerLeft'>
@@ -14,7 +18,7 @@ const Header = () => {
             <Link className="link" to="/movies/upcoming"><span>Upcoming</span></Link>
 
             {/* Searchbar */}
-            <div className="input-group searchbar">
+            {/* <div className="input-group searchbar">
               <input type="text" className="form-control" placeholder="Search this blog" />
               <div className="input-group-append">
                 <button className="btn btn-secondary" type="button">
@@ -22,8 +26,9 @@ const Header = () => {
                 </button>
                 <br></br>
               </div>
-            </div>
-            
+            </div> */}
+            <SearchBar  />
+           
         </div>
         
     </div>

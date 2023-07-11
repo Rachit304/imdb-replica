@@ -8,15 +8,18 @@ import Footer from './component/footer/Footer';
 import ScrollToTopButton from './component/scroll/ScrollToTopButton';
 import MovieDetail from './component/movieDetail/MovieDetail';
 
+import Home from './pages/home/Home'
 function App() {
   return (
     <div className="App">
+     
+
       <BrowserRouter>
       <Header />
         <Routes>
-          <Route index element={<h1>Rachit</h1>} />
-          <Route path="movie/:id" element={<MovieDetail/>} />
-          <Route path="movies/:type" element={<MovieList />} />
+          <Route index element={<Home />} />
+          <Route path="movie/:id" element={<h1>Movie Detail Page</h1>} />
+          <Route path="movies/:type" element={<h1>Movie List Page</h1>} />
           <Route path='/*' element={<h1>Error </h1>} />
         </Routes>
         
