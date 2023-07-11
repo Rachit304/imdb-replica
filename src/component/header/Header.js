@@ -22,6 +22,7 @@ const Header = () => {
             <Searchbar />
            
         </div>
+        </div>
         
    
   )
