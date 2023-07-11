@@ -20,6 +20,7 @@ const Header = () => {
                 <button className="btn btn-secondary" type="button">
                 <i className="fa fa-search"></i>
                 </button>
+                <br></br>
               </div>
             </div>
             </BrowserRouter>
