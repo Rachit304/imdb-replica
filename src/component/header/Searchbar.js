@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-const API_KEY = 'YOUR_API_KEY';
+import Card from '../card/Card';
 
 const MoviesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -19,9 +18,13 @@ const MoviesPage = () => {
       setError(null);
 
       try {
-        const response = await fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchQuery}`);
+        // Make your API call to fetch the searched movies
+        // Assign the fetched movie data to the `movies` state
+
+        // Example API call using fetch
+        const response = await fetch(` http://www.omdbapi.com/?i=tt3896198&apikey=f60aa48f?q=${searchQuery}`);
         const data = await response.json();
-        
+
         if (data.Response === 'True') {
           setMovies(data.Search);
         } else {
@@ -53,20 +56,14 @@ const MoviesPage = () => {
         <input type="text" value={searchQuery} onChange={handleInputChange} />
         <button type="submit">Search</button>
       </form>
-      
+
       {isLoading && <p>Loading...</p>}
-      
+
       {error && <p>{error}</p>}
-      
+
       {movies.length === 0 && !isLoading && !error && <p>No results found.</p>}
-      
-      {movies.length > 0 && (
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.imdbID}>{movie.Title}</li>
-          ))}
-        </ul>
-      )}
+
+      {movies.length > 0 && <Card movies={movies} />}
     </div>
   );
 };
