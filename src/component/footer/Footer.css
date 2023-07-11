@@ -1,0 +1,48 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer button {
+    background-color: #f5c518; /* Adjust this color to match the IMDB website logo */
+    color: black;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px; /* Rounded borders */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .footer button:hover {
+    background-color: #f3b800; /* Adjust this color to match the hover effect of the IMDB website logo */
+  }
+  
+  
+  .footer p {
+    margin: 5px 0;
+  }
+  
+  .social-icons {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .social-icons a {
+    margin-right: 20px; 
+  }
+  
+  .social-icons svg {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #fff;
+  }
