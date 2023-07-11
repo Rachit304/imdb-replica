@@ -6,9 +6,10 @@ import Home from './pages/home/Home'
 function App() {
   return (
     <div className="App">
-      <Header />
+     
 
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route index element={<Home />} />
           <Route path="movie/:id" element={<h1>Movie Detail Page</h1>} />
