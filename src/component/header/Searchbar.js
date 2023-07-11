@@ -50,20 +50,14 @@ const MoviesPage = () => {
   };
 
   return (
-    <div>
-      <h1>Search for Movies</h1>
-      <form onSubmit={handleFormSubmit}>
-        <input type="text" value={searchQuery} onChange={handleInputChange} />
-        <button type="submit">Search</button>
-      </form>
-
-      {isLoading && <p>Loading...</p>}
-
-      {error && <p>{error}</p>}
-
-      {movies.length === 0 && !isLoading && !error && <p>No results found.</p>}
-
-      {movies.length > 0 && <Card movies={movies} />}
+      <div className="input-group searchbar">
+              <input type="text" className="form-control" placeholder="Search this blog" />
+              <div className="input-group-append">
+                <button className="btn btn-secondary" type="button">
+                <i className="fa fa-search"></i>
+                </button>
+                <br></br>
+              </div>
     </div>
   );
 };
