@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom';
-import SearchBar from './Searchbar';
+import Searchbar from './Searchbar';
  
 const Header = () => {
 
@@ -18,9 +18,8 @@ const Header = () => {
             <Link className="link" to="/movies/upcoming"><span>Upcoming</span></Link>
 
             {/* Searchbar */}
-            
-            </div>
-            <SearchBar  />
+           
+            <Searchbar />
            
         </div>
         
