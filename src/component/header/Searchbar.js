@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../card/Card';
 
-const MoviesPage = () => {
+
+const Searchbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,4 +68,4 @@ const MoviesPage = () => {
   );
 };
 
-export default MoviesPage;
+export default Searchbar;

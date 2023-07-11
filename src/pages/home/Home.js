@@ -16,8 +16,12 @@ useEffect(() => {
 
   return (
     <div className='poster'>
-        <Carousel showThumbs={false} autoplay={true} transitionTime={3}
-                    infiniteLoop={true} showStatus={false}>
+        <Carousel showThumbs={false}
+      autoPlay={true}
+      interval={3000} // Set the interval (in milliseconds) for automatic slide changes
+      transitionTime={1000} // Set the transition time (in milliseconds) for slide transitions
+      infiniteLoop={true}
+      showStatus={false}>
 
         {
         popularMovies.map(movie => (
@@ -41,6 +45,8 @@ useEffect(() => {
         }
         
         </Carousel>
+
+        
     </div>
   )
 }
