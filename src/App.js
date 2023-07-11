@@ -7,7 +7,10 @@ import Home from './pages/home/Home'
 function App() {
   return (
     <div className="App">
+     
+
       <BrowserRouter>
+      <Header />
       <Header />
         <Routes>
           <Route index element={<Home />} />
