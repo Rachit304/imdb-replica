@@ -6,6 +6,7 @@ import Header from './component/header/Header'
 import MovieList from './component/movieList/MovieList';
 import Footer from './component/footer/Footer';
 import ScrollToTopButton from './component/scroll/ScrollToTopButton';
+import MovieDetail from './component/movieDetail/MovieDetail';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Header />
         <Routes>
           <Route index element={<h1>Rachit</h1>} />
-          <Route path="movie/:id" element={<h1>Movie Detail Page</h1>} />
+          <Route path="movie/:id" element={<MovieDetail/>} />
           <Route path="movies/:type" element={<MovieList />} />
           <Route path='/*' element={<h1>Error </h1>} />
         </Routes>
