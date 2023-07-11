@@ -1,96 +1,7 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #211f1f;
-  }
-  
-  .headerLeft {
-    display: flex;
-    align-items: center;
-  }
-  
-  .link {
-    
-    text-decoration: none;
-    color: #f5eeee;
-    font-weight: bold;
-    font-size: 40px;
-  }
-  
-  .link:last-child {
-    margin-right: 0;
-  }
-  
-  .top {
-    font-weight: bold;
-  }
-  
-  .header__icon {
-    width: 100px;
-    height: 50px;
-  }
-  
-  .input-group {
-    width : 700px;
-    position: relative;
 
+.input-group {
+  position: relative;
 }
-
-.clear-icon  {
-  align-items: center;
-  cursor: pointer;
-}
-
-.drodown {
-  background-color: black;
-  color: white;
-  flex-direction: column;
-  border : 1px solid white;
-  height: 50px;
-  width: 300px;
-}
-
-
-.dropdown-empty {
-  border: none;
-}
-
-.dropdown-row {
-  cursor: pointer;
-  text-align: start;
-  margin: 2px 0;
-}
-
-.input {
-  width: 100%;
-  height: 30px;
-}
-
-.search-inner {
-  display: flex;
-}
-
-.searchButton {
-  background-color: rgb(210, 210, 11);
-  color: black;
-  font-weight: bold;
-  border: 4px;
-
-}
-
-.clearButton {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
 
 .suggestions-list {
   position: absolute;
@@ -185,4 +96,3 @@
   outline: none;
   cursor: pointer;
 }
-  

@@ -45,31 +45,18 @@ const Navbar = () => {
 
   const [liveSearchResults, setLiveSearchResults] = useState([]);
   const navigate = useNavigate();
-  const searchInputRef = useRef(null);
-  const anchorRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
+  const anchorRef = useRef(null);
   const anchorRef = useRef(null);
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const suggestionsRef = useRef();
   const [openSuggestions, setOpenSuggestions] = useState(false); // Separate state for suggestions dropdown
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        searchInputRef.current &&
-        !searchInputRef.current.contains(event.target)
-      ) {
-        setLiveSearchResults([]);
-      }
-    };
+  const handleToggleMenu = () => {
+    setOpenMenu(prev => !prev);
+  };
 
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   const handleSearch = async () => {
 
