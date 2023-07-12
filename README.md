@@ -10,6 +10,8 @@ This project is an IMDb replica website that displays popular, upcoming, and top
 
 - **Carousel:** Carousel feature on the homepage showcasing movie banners and info.
 
+- **Search Bar** Search Box feature on the homepage showing movies based on search result. 
+
 - **Footer:** Basic footer with privacy policy.
 
 ## Technologies Used
