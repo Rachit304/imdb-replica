@@ -7,7 +7,15 @@ import Footer from "./component/footer/Footer";
 import ScrollToTopButton from "./component/scroll/ScrollToTopButton";
 import ScrollToTop from "./component/scroll/ScrollToTop";
 
-import Home from "./pages/home/Home";
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './component/header/Header'
+import MovieList from './component/movieList/MovieList';
+import Footer from './component/footer/Footer';
+import ScrollToTopButton from './component/scroll/ScrollToTopButton';
+import MovieDetail from './component/movieDetail/MovieDetail';
+import Home from './pages/home/Home'
 function App() {
   return (
     <div className="App">
