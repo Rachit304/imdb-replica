@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import './ScrollToTopButton.css';
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import "./ScrollToTopButton.css";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScroll = () => {
@@ -19,19 +19,16 @@ const ScrollToTopButton = () => {
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   return (
     <div
-      className={`scroll-to-top-button ${isVisible ? 'visible' : ''}`}
+      className={`scroll-to-top-button ${isVisible ? "visible" : ""}`}
       onClick={handleScrollToTop}
     >
-      <div className="logo-container">
-        {/* Add your logo here */}
-        {/* Example: <img src="logo.png" alt="Logo" /> */}
-      </div>
+      <div className="logo-container"></div>
       <div className="arrow-container">
         <FontAwesomeIcon icon={faArrowUp} className="arrow-icon" />
       </div>
