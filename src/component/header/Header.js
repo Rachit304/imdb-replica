@@ -41,12 +41,14 @@ const Navbar = () => {
         <div className="container-fluid">
           <div className="row p-2 pt-3 pb-3 d-flex align-items-center">
             <div className="col-md-2">
-              <img
-                className="d-none d-md-flex"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png"
-                width="100"
-                alt="Logo"
-              />
+              <Link to="/">
+                <img
+                  className="d-none d-md-flex"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png"
+                  width="100"
+                  alt="Logo"
+                />
+              </Link>
             </div>
             <div className="col-md-8">
               <div className="d-flex form-inputs">
