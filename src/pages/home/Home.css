@@ -77,4 +77,9 @@
   .arrow-icon {
     margin-left: 5px;
   }
+
+  .scroll {
+    scroll-behavior: smooth;
+    scroll-behavior: initial;
+  }
   

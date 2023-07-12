@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import Card from "../../component/card/Card";
 import axios from "axios";
@@ -16,46 +16,58 @@ const Home = () => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
 
   useEffect(() => {
-    fetchPopularMovies();
-    fetchTopRatedMovies();
-    fetchUpcomingMovies();
+    fetchMovies("popular");
+    fetchMovies("top_rated");
+    fetchMovies("upcoming");
   }, []);
 
-  const fetchPopularMovies = async () => {
+  const fetchMovies = async (type) => {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
+        `https://api.themoviedb.org/3/movie/${type}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
       );
-      setPopularMovies(response.data.results);
+
+      switch (type) {
+        case "popular":
+          setPopularMovies(response.data.results);
+          break;
+        case "top_rated":
+          setTopRatedMovies(response.data.results);
+          break;
+        case "upcoming":
+          setUpcomingMovies(response.data.results);
+          break;
+        default:
+          break;
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchTopRatedMovies = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
-      );
-      setTopRatedMovies(response.data.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchUpcomingMovies = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
-      );
-      setUpcomingMovies(response.data.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const MovieList = ({ movies, title }) => (
+    <div className="section">
+      <Link
+        className="link"
+        to={`/movies/${title.toLowerCase().replace(" ", "_")}`}
+      >
+        <span className="top">{title}</span>
+        <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" />
+      </Link>
+      <div className="magic-wrapper">
+        <div className="content-wrapper magic">
+          <ScrollMenu className="scroll-menu">
+            {movies.map((movie) => (
+              <Card key={movie.id} movie={movie} />
+            ))}
+          </ScrollMenu>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div>
+    <div className="scroll">
       <Carousel
         showThumbs={false}
         autoPlay={true}
@@ -63,6 +75,7 @@ const Home = () => {
         transitionTime={1000}
         infiniteLoop={true}
         showStatus={false}
+        touch={false}
       >
         {popularMovies.map((movie) => (
           <Link
@@ -97,57 +110,13 @@ const Home = () => {
         ))}
       </Carousel>
 
-      <div className="section">
-        <Link className="link" to="/movies/popular">
-          <span className="top">Popular </span>
-          <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" />
-        </Link>
-        <div class="magic-wrapper">
-          <div class="content-wrapper magic">
-            <ScrollMenu className="scroll-menu">
-              {popularMovies.map((movie) => (
-                <Card key={movie.id} movie={movie} />
-              ))}
-            </ScrollMenu>
-          </div>
-        </div>
-      </div>
-      <br></br>
-      <br></br>
-
-      <div className="section">
-        <Link className="link" to="/movies/top-rated">
-          <span className="top">Top Rated </span>
-          <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" />
-        </Link>
-        <div class="magic-wrapper">
-          <div class="content-wrapper magic">
-            <ScrollMenu className="scroll-menu">
-              {topRatedMovies.map((movie) => (
-                <Card key={movie.id} movie={movie} />
-              ))}
-            </ScrollMenu>
-          </div>
-        </div>
-      </div>
-      <br></br>
-      <br></br>
-
-      <div className="section">
-        <Link className="link" to="/movies/upcoming">
-          <span className="top">Upcoming </span>
-          <FontAwesomeIcon icon={faChevronRight} className="arrow-icon" />
-        </Link>
-        <div class="magic-wrapper">
-          <div class="content-wrapper magic">
-            <ScrollMenu className="scroll-menu">
-              {upcomingMovies.map((movie) => (
-                <Card key={movie.id} movie={movie} />
-              ))}
-            </ScrollMenu>
-          </div>
-        </div>
-      </div>
+      <MovieList movies={popularMovies} title="Popular" />
+      <br />
+      <br />
+      <MovieList movies={topRatedMovies} title="Top Rated" />
+      <br />
+      <br />
+      <MovieList movies={upcomingMovies} title="Upcoming" />
     </div>
   );
 };

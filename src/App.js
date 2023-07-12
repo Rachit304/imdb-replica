@@ -5,6 +5,7 @@ import Header from "./component/header/Header";
 import MovieList from "./component/movieList/MovieList";
 import Footer from "./component/footer/Footer";
 import ScrollToTopButton from "./component/scroll/ScrollToTopButton";
+import ScrollToTop from "./component/scroll/ScrollToTop";
 
 import Home from "./pages/home/Home";
 function App() {
@@ -12,13 +13,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route index element={<Home />} />
           <Route path="movies/:type" element={<MovieList />} />
         </Routes>
       </BrowserRouter>
       <Footer />
-
       <ScrollToTopButton />
     </div>
   );
