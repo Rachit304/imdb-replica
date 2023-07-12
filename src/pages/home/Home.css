@@ -51,3 +51,30 @@
     text-align: left;
     width: 50%;
 }
+
+
+  .magic-wrapper {
+    height: 312px;
+    overflow-y: hidden;
+    width: 100%;
+   }
+   
+   .magic {
+    padding-bottom: 30px;
+   }
+  
+   .link {
+    margin-right: 15px;
+    margin-left: 12px;
+    text-decoration: none;
+    color: #f5eeee;
+    font-size: 30px;
+  }
+
+  .link:last-child {
+    margin-right: 0;
+  }
+  .arrow-icon {
+    margin-left: 5px;
+  }
+  
