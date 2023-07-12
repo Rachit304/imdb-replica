@@ -85,9 +85,8 @@ const Home = () => {
           >
             <div className="posterImage">
               <img
-                src={`https://image.tmdb.org/t/p/original${
-                  movie && movie.backdrop_path
-                }`}
+                src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path
+                  }`}
                 alt={movie.original_title}
               />
             </div>

@@ -202,10 +202,10 @@ const Navbar = () => {
         <Routes>
           <Route path="/search" element={<SearchResults movies={movies} />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
+
         </Routes>
       </div>
     </>
   );
 };
-
 export default Navbar;
