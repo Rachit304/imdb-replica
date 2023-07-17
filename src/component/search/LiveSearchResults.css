@@ -1,0 +1,29 @@
+.live-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: 0px 0px 14px 14px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    list-style-type: none;
+    z-index: 9999;
+  }
+  
+  .live-search-results::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+  }
+  
+  .live-search-results li {
+    padding-left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .live-search-results li:hover {
+    background-color: #f0f0f0;
+  }
+  

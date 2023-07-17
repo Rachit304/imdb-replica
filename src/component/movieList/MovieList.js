@@ -7,25 +7,57 @@ import Skeleton from "react-loading-skeleton";
 const MovieList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [movieList, setMovieList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const { type } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
+    setPage(1);
+    setMovieList([]); // Clear movie list when the movie type changes
     getData();
   }, [type]);
+
+  useEffect(() => {
+    if (page > 1) {
+      getData();
+    }
+  }, [page]);
 
   const getData = () => {
     fetch(
       `https://api.themoviedb.org/3/movie/${
         type ? type : "popular"
-      }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
+      }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US&page=${page}`
     )
       .then((res) => res.json())
       .then((data) => {
-        setMovieList(data.results);
+        setMovieList((prevMovieList) => [...prevMovieList, ...data.results]);
+        setIsLoading(false);
+        setTotalPages(data.total_pages);
+      })
+      .catch((error) => {
+        console.log(error);
         setIsLoading(false);
       });
   };
+
+  const handleScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoading) {
+      if (page < totalPages) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [page, isLoading]);
 
   return (
     <div className="movie__list">

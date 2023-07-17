@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Header from "./component/header/Header";
 import MovieList from "./component/movieList/MovieList";
 import Footer from "./component/footer/Footer";
