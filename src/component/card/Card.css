@@ -2,14 +2,16 @@
     display: inline-block;
     transition: transform .2s;
     position: relative;
-    border-radius: 10px;
+    border-radius: 13px;
     overflow: hidden;
-    margin: 0.19rem;
+    margin: 0.60rem;
     cursor:pointer;
     min-width:200px;
     height:300px;
     z-index:0;
-    border: 3px solid rgb(99, 99, 99);
+    /* border: 3px solid rgb(99, 99, 99); */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+
 }
 
 .cards:hover {
@@ -26,7 +28,7 @@
     position: absolute;
     padding: 0 1rem 1rem 1rem;
     bottom: 0px;
-    height: 290px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -59,4 +61,10 @@
     font-style: italic;
     font-size: .75rem;
     margin-bottom: 0.25rem;
+} 
+.react-loading-skeleton{
+    border-radius: 10px;
+    line-height: 2;
 }
+
+  

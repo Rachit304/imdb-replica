@@ -7,17 +7,20 @@ const MovieDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getData();
-    window.scrollTo(0, 0);
-  }, []);
+    const fetchMovieDetail = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
+        );
+        const data = await response.json();
+        setMovie(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const getData = () => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
-    )
-      .then((res) => res.json())
-      .then((data) => setMovie(data));
-  };
+    fetchMovieDetail();
+  }, [id]);
 
   return (
     <div className="movie">

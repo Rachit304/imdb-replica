@@ -14,11 +14,13 @@ const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
 
   useEffect(() => {
     fetchMovies("popular");
     fetchMovies("top_rated");
     fetchMovies("upcoming");
+    fetchMovies("now_playing");
   }, []);
 
   const fetchMovies = async (type) => {
@@ -36,6 +38,9 @@ const Home = () => {
           break;
         case "upcoming":
           setUpcomingMovies(response.data.results);
+          break;
+        case "now_playing":
+          setNowPlayingMovies(response.data.results);
           break;
         default:
           break;
@@ -77,7 +82,7 @@ const Home = () => {
         showStatus={false}
         touch={false}
       >
-        {popularMovies.map((movie) => (
+        {nowPlayingMovies.map((movie) => (
           <Link
             key={movie.id}
             style={{ textDecoration: "none", color: "white" }}
@@ -109,6 +114,11 @@ const Home = () => {
           </Link>
         ))}
       </Carousel>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
 
       <MovieList movies={popularMovies} title="Popular" />
       <br />
@@ -117,6 +127,8 @@ const Home = () => {
       <br />
       <br />
       <MovieList movies={upcomingMovies} title="Upcoming" />
+      <br />
+      <br />
     </div>
   );
 };
