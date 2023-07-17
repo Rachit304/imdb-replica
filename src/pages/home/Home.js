@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import "./Home.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import { Link } from "react-router-dom";
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import "react-horizontal-scrolling-menu/dist/styles.css";
-import Card from "../../component/card/Card";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from 'react'
+import './Home.css'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import { Link } from 'react-router-dom';
+import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
+import 'react-horizontal-scrolling-menu/dist/styles.css';
+import Card from '../../component/card/Card';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -33,6 +34,9 @@ const Home = () => {
           break;
         case "top_rated":
           setTopRatedMovies(response.data.results);
+          break;
+        case "upcoming":
+          setUpcomingMovies(response.data.results);
           break;
         case "upcoming":
           setUpcomingMovies(response.data.results);
@@ -116,6 +120,9 @@ const Home = () => {
       <br />
       <br />
       <MovieList movies={upcomingMovies} title="Upcoming" />
+      <br />
+      <br />
+      <MovieList movies={upcomingMovies} title="WatchList" />
     </div>
   );
 };

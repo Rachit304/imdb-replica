@@ -18,8 +18,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="movies/:type" element={<MovieList />} />
         </Routes>
+
       </BrowserRouter>
       <Footer />
+
       <ScrollToTopButton />
     </div>
   );

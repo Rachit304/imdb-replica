@@ -149,7 +149,7 @@ const Navbar = () => {
               onChange={handleChange}
               InputProps={{
                 endAdornment: value && (
-                  <Clear className="clear-icon" onMouseDown={(event) => handleClearSearch(event)} />
+                  <Clear className="clear-icon" onMouseDown={(event) => handleClearSearch} />
                 ),
               }}
             />
@@ -202,10 +202,10 @@ const Navbar = () => {
         <Routes>
           <Route path="/search" element={<SearchResults movies={movies} />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
-
         </Routes>
       </div>
     </>
   );
 };
+
 export default Navbar;
