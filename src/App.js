@@ -19,9 +19,11 @@ import Home from './pages/home/Home'
 function App() {
   return (
     <div className="App">
+
       <BrowserRouter>
         <Header />
         <ScrollToTop />
+
         <Routes>
           <Route index element={<Home />} />
           <Route path="movies/:type" element={<MovieList />} />
