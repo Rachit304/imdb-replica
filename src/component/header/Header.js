@@ -89,34 +89,47 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="col-md-8">
-              <div className="d-flex form-inputs">
-                <div className="container" ref={searchInputRef}>
-                  <div className="container">
-                    <div className="input-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search for..."
-                        value={searchTerm}
-                        onChange={handleChange}
+              <div ref={searchInputRef}>
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search for..."
+                    value={searchTerm}
+                    onChange={handleChange}
+                  />
+                  <span>
+                    <button
+                      className="form-control"
+                      style={{
+                        backgroundColor: "#ffcc00",
+
+                        color: "#121212",
+
+                        fontWeight: "bold",
+
+                        borderRadius: "0px 10px 10px 0px",
+
+                        height: "40px",
+
+                        boxShadow: "none",
+
+                        "&:hover": {
+                          backgroundColor: "#ffc400",
+                        },
+                      }}
+                      type="button"
+                      onClick={handleSearch}
+                    >
+                      <i className="fa fa-search fa-fw"></i> Search
+                    </button>
+                    {liveSearchResults.length > 0 && (
+                      <LiveSearchResults
+                        results={liveSearchResults}
+                        onClick={handleResultClick}
                       />
-                      <span className="input-group-btn">
-                        <button
-                          className="btn btn-search"
-                          type="button"
-                          onClick={handleSearch}
-                        >
-                          <i className="fa fa-search fa-fw"></i> Search
-                        </button>
-                        {liveSearchResults.length > 0 && (
-                          <LiveSearchResults
-                            results={liveSearchResults}
-                            onClick={handleResultClick}
-                          />
-                        )}
-                      </span>
-                    </div>
-                  </div>
+                    )}
+                  </span>
                 </div>
               </div>
             </div>

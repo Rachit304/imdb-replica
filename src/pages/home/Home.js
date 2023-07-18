@@ -116,9 +116,6 @@ const Home = () => {
       </Carousel>
       <br></br>
       <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
 
       <MovieList movies={popularMovies} title="Popular" />
       <br />
