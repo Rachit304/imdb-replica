@@ -14,16 +14,24 @@
   .live-search-results::-webkit-scrollbar {
     display: none; /* Hide the scrollbar */
   }
-  
   .live-search-results li {
-    padding-left: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    cursor: pointer;
-    color: black;
-  }
-  
-  .live-search-results li:hover {
-    background-color: #f0f0f0;
-  }
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+  display: flex; /* Add flex display to align items horizontally */
+  align-items: center; /* Center align items vertically */
+
+}
+
+.live-search-results .poster {
+  width: 50px; /* Adjust the width as needed */
+  height: auto; /* Adjust the height as needed */
+  margin-right: 10px; /* Add spacing between the poster and the title */
+  border-radius: 7px;
+}
+
+.live-search-results .title {
+  margin: 0; /* Remove any default margin */
+}
   
