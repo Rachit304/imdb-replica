@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Card from "../card/Card";
 import axios from "axios";
-import { AppBar, Toolbar, Typography, Box, styled, Menu, MenuItem, ClickAwayListener, TextField, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, styled, Menu, MenuItem } from '@mui/material';
 import { Menu as MenuIcon, BookmarkAdd, Clear } from '@mui/icons-material';
 import {
   BrowserRouter as Router,
@@ -11,7 +11,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import './Header.css'
-
 import MovieDetail from "../movieDetail/MovieDetail";
 import LiveSearchResults from "../search/LiveSearchResults";
 
@@ -44,16 +43,14 @@ const StyledToolBar = styled(Toolbar)`
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+
   const [liveSearchResults, setLiveSearchResults] = useState([]);
   const navigate = useNavigate();
   const searchInputRef = useRef(null);
   const anchorRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
   const [value, setValue] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const suggestionsRef = useRef();
-  const [openSuggestions, setOpenSuggestions] = useState(false); // Separate state for suggestions dropdown
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -73,7 +70,7 @@ const Navbar = () => {
   }, []);
 
   const handleSearch = async () => {
-    setIsLoading(true);
+
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=4e44d9029b1270a757cddc766a1bcb63&query=${searchTerm}`
@@ -83,7 +80,7 @@ const Navbar = () => {
     } catch (error) {
       console.log(error);
     }
-    setIsLoading(false);
+
   };
 
   const handleChange = async (event) => {
@@ -112,6 +109,10 @@ const Navbar = () => {
     setOpenMenu(prev => !prev);
   };
 
+  const handleClearSearch = (event) => {
+    event.preventDefault();
+    setValue('');
+  };
   return (
     <div>
       {/* <div className="row p-2 pt-3 pb-3 d-flex align-items-center"> */}
@@ -137,13 +138,17 @@ const Navbar = () => {
 
 
           <div ref={searchInputRef} className="input-group">
-
             <input
               type="text"
               className="form-control"
               placeholder="Search for..."
               value={searchTerm}
               onChange={handleChange}
+              InputProps={{
+                endAdornment: value && (
+                  <Clear className="clear-icon" onMouseDown={(event) => handleClearSearch(event)} />
+                ),
+              }}
             />
             <span>
               <button
@@ -167,6 +172,7 @@ const Navbar = () => {
                 }}
                 type="button"
                 onClick={handleSearch}
+
               >
                 <i className="fa fa-search fa-fw"></i> Search
               </button>
