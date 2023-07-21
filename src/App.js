@@ -6,7 +6,7 @@ import MovieList from "./component/movieList/MovieList";
 import Footer from "./component/footer/Footer";
 import ScrollToTopButton from "./component/scroll/ScrollToTopButton";
 import ScrollToTop from "./component/scroll/ScrollToTop";
-import Home from "./pages/home/Home";
+import Home from "./component/home/Home";
 
 function App() {
   return (

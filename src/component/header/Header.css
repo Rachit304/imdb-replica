@@ -32,7 +32,7 @@
   }
   
   .input-group {
-
+    width : 700px;
     position: relative;
 
   }
@@ -72,5 +72,99 @@
     background-color: #f0f0f0;
   }
 
- 
+
+
+.suggestions-list {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.suggestions-list-above {
+  bottom: auto;
+  top: 100%;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f2f2f2;
+}
+
+.searchBox {
+  background-color: white;
+  color: black;
+  display: flex;
+  border-radius: 10px 0 0 10px;
+  width: 680px;
+  height: 40px;
+  justify-content: center;
+  margin-left: 0;
+
+}
+
+.clear-icon  {
+  align-items: center;
+  cursor: pointer;
+}
+
+.drodown {
+  background-color: black;
+  color: white;
+  flex-direction: column;
+  border : 1px solid white;
+  height: 50px;
+  width: 300px;
+}
+
+
+.dropdown-empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+
+.input {
+  width: 100%;
+  height: 30px;
+}
+
+.search-inner {
+  display: flex;
+}
+
+.searchButton {
+  background-color: rgb(210, 210, 11);
+  color: black;
+  font-weight: bold;
+  border: 4px;
+
+}
+
+.clearButton {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
   

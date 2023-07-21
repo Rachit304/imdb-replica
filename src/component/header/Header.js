@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Card from "../card/Card";
 import axios from "axios";
+import { AppBar, Toolbar, Typography, Box, styled, Menu, MenuItem, ClickAwayListener, TextField, Button } from '@mui/material';
+import { Menu as MenuIcon, BookmarkAdd, Clear } from '@mui/icons-material';
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,9 +10,36 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
+import './Header.css'
 
 import MovieDetail from "../movieDetail/MovieDetail";
 import LiveSearchResults from "../search/LiveSearchResults";
+
+const StyledToolBar = styled(Toolbar)`
+  background: #121212;
+  min-height: 50px !important;
+  padding: 0 px !important;
+  padding-left: 0 10 ;
+
+  
+  & > * {
+    padding: 0 20px;
+  }
+  & > div {
+    display: flex;
+ 
+    & > p {
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+  & > p {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+`;
+
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,6 +48,12 @@ const Navbar = () => {
   const [liveSearchResults, setLiveSearchResults] = useState([]);
   const navigate = useNavigate();
   const searchInputRef = useRef(null);
+  const anchorRef = useRef(null);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [value, setValue] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const suggestionsRef = useRef();
+  const [openSuggestions, setOpenSuggestions] = useState(false); // Separate state for suggestions dropdown
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -73,86 +108,92 @@ const Navbar = () => {
     navigate(`/movie/${movie.id}`);
   };
 
+  const handleToggleMenu = () => {
+    setOpenMenu(prev => !prev);
+  };
+
   return (
     <div>
-      <section className="header-main  bg-dark">
-        <div className="container-fluid">
-          <div className="row p-2 pt-3 pb-3 d-flex align-items-center">
-            <div className="col-md-2">
-              <Link to="/">
-                <img
-                  className="d-none d-md-flex"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png"
-                  width="100"
-                  alt="Logo"
+      {/* <div className="row p-2 pt-3 pb-3 d-flex align-items-center"> */}
+      <AppBar style={{ minHeight: 30 }} position='static'>
+        <StyledToolBar>
+
+          <Link to="/">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png"
+              width="80" height="30" alt="Logo" />
+          </Link>
+
+
+          <Box style={{ cursor: 'pointer' }} ref={anchorRef} onClick={handleToggleMenu}>
+            <MenuIcon />
+            <Typography>Menu</Typography>
+          </Box>
+
+          <Menu anchorEl={anchorRef.current} open={openMenu} onClose={() => setOpenMenu(false)}>
+            <MenuItem onClick={() => navigate("/movies/popular")}>Popular</MenuItem>
+            <MenuItem onClick={() => navigate("/movies/upcoming")}>Upcoming</MenuItem>
+            <MenuItem onClick={() => navigate("/movies/top_rated")}>Top_Rated</MenuItem>
+          </Menu>
+
+
+          <div ref={searchInputRef} className="input-group">
+
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search for..."
+              value={searchTerm}
+              onChange={handleChange}
+            />
+            <span>
+              <button
+                className="form-control"
+                style={{
+                  backgroundColor: "#ffcc00",
+
+                  color: "#121212",
+
+                  fontWeight: "bold",
+
+                  borderRadius: "0px 10px 10px 0px",
+
+                  height: "40px",
+
+                  boxShadow: "none",
+
+                  "&:hover": {
+                    backgroundColor: "#ffc400",
+                  },
+                }}
+                type="button"
+                onClick={handleSearch}
+              >
+                <i className="fa fa-search fa-fw"></i> Search
+              </button>
+              {liveSearchResults.length > 0 && (
+                <LiveSearchResults
+                  results={liveSearchResults}
+                  onClick={handleResultClick}
                 />
-              </Link>
-            </div>
-            <div className="col-md-8">
-              <div ref={searchInputRef}>
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search for..."
-                    value={searchTerm}
-                    onChange={handleChange}
-                  />
-                  <span>
-                    <button
-                      className="form-control"
-                      style={{
-                        backgroundColor: "#ffcc00",
-
-                        color: "#121212",
-
-                        fontWeight: "bold",
-
-                        borderRadius: "0px 10px 10px 0px",
-
-                        height: "40px",
-
-                        boxShadow: "none",
-
-                        "&:hover": {
-                          backgroundColor: "#ffc400",
-                        },
-                      }}
-                      type="button"
-                      onClick={handleSearch}
-                    >
-                      <i className="fa fa-search fa-fw"></i> Search
-                    </button>
-                    {liveSearchResults.length > 0 && (
-                      <LiveSearchResults
-                        results={liveSearchResults}
-                        onClick={handleResultClick}
-                      />
-                    )}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-2">
-              <div className="d-flex d-none d-md-flex flex-row align-items-center">
-                <span className="shop-bag">
-                  <i className="bx bxs-shopping-bag"></i>
-                </span>
-                <div className="d-flex flex-column ms-2">
-                  <span className="qty">Sign In</span>
-                </div>
-              </div>
-            </div>
+              )}
+            </span>
           </div>
-        </div>
-      </section>
+
+          <Box style={{ cursor: 'pointer' }}>
+            <BookmarkAdd />
+            <Typography>Watchlist</Typography>
+          </Box>
+        </StyledToolBar>
+      </AppBar>
+      {/* </div> */}
+
+
 
       <Routes>
         <Route path="/search" element={<SearchResults movies={movies} />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
       </Routes>
-    </div>
+    </div >
   );
 };
 

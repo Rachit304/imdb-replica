@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
-import Card from "../../component/card/Card";
+import Card from "../card/Card";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -90,9 +90,8 @@ const Home = () => {
           >
             <div className="posterImage">
               <img
-                src={`https://image.tmdb.org/t/p/original${
-                  movie && movie.backdrop_path
-                }`}
+                src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path
+                  }`}
                 alt={movie.original_title}
               />
             </div>
