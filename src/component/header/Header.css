@@ -12,10 +12,11 @@
   }
   
   .link {
-    margin-right: 15px;
+    
     text-decoration: none;
     color: #f5eeee;
-    font-size: 16px;
+    font-weight: bold;
+    font-size: 40px;
   }
   
   .link:last-child {

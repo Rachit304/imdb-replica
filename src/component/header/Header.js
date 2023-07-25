@@ -4,15 +4,14 @@ import axios from "axios";
 import { AppBar, Toolbar, Typography, Box, styled, Menu, MenuItem } from '@mui/material';
 import { Menu as MenuIcon, BookmarkAdd, Clear } from '@mui/icons-material';
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Link,
   useNavigate,
 } from "react-router-dom";
 import './Header.css'
-import MovieDetail from "../movieDetail/MovieDetail";
 import LiveSearchResults from "../search/LiveSearchResults";
+
 
 const StyledToolBar = styled(Toolbar)`
   background: #121212;
@@ -124,7 +123,6 @@ const Navbar = () => {
               width="80" height="30" alt="Logo" />
           </Link>
 
-
           <Box style={{ cursor: 'pointer' }} ref={anchorRef} onClick={handleToggleMenu}>
             <MenuIcon />
             <Typography>Menu</Typography>
@@ -135,7 +133,6 @@ const Navbar = () => {
             <MenuItem onClick={() => navigate("/movies/upcoming")}>Upcoming</MenuItem>
             <MenuItem onClick={() => navigate("/movies/top_rated")}>Top_Rated</MenuItem>
           </Menu>
-
 
           <div ref={searchInputRef} className="input-group">
             <input
@@ -185,19 +182,24 @@ const Navbar = () => {
             </span>
           </div>
 
+          <Box style={{ cursor: 'pointer', fontWeight: 'bold' }}>
+            <Link to="/login" className="link">
+              <Typography>SignIn</Typography>
+            </Link>
+
+          </Box>
+
           <Box style={{ cursor: 'pointer' }}>
             <BookmarkAdd />
             <Typography>Watchlist</Typography>
           </Box>
+
         </StyledToolBar>
       </AppBar>
       {/* </div> */}
 
-
-
       <Routes>
         <Route path="/search" element={<SearchResults movies={movies} />} />
-        <Route path="/movie/:id" element={<MovieDetail />} />
       </Routes>
     </div >
   );

@@ -1,0 +1,16 @@
+.sign-btn {
+    background-color: #f5c518; /* Adjust this color to match the IMDB website logo */
+    color: black;
+    width: 330px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px; /* Rounded borders */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .sign-btn:hover {
+    background-color: #f3b800; /* Adjust this color to match the hover effect of the IMDB website logo */
+  }
