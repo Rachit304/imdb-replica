@@ -15,7 +15,7 @@ const Footer = () => {
           <button>Sign in for more access</button>
           <span></span>
           <div className="social-icons">
-            <a href="https://www.facebook.com">
+            <a href="https://www.facebook.com" >
               <FontAwesomeIcon icon={faFacebook} />
             </a>
             <a href="https://www.twitter.com">
