@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./Card.css";
+
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Card = ({ movie }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +15,18 @@ const Card = ({ movie }) => {
     }, 1500);
   }, []);
 
+  const handleAddToWatchlist = async () => {
+    try {
+      console.log("Movie : ", movie)
+      await axios.post("https://localhost:7142/api/Movie", movie);
+      // You can show a success message or perform any other action on successful addition
+      alert("Movie added to Watchlist successfully!");
+    } catch (error) {
+      // Handle errors here
+      console.error("Error adding movie to Watchlist:", error);
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -22,35 +36,39 @@ const Card = ({ movie }) => {
           </SkeletonTheme>
         </div>
       ) : (
-        <Link
-          to={`/movie/${movie.id}`}
-          style={{ textDecoration: "none", color: "white" }}
-        >
-          <div className="cards">
-            <img
-              className="cards__img"
-              src={`https://image.tmdb.org/t/p/original${
-                movie ? movie.poster_path : ""
-              }`}
-            />
-            <div className="cards__overlay">
-              <div className="card__title">
-                {movie ? movie.original_title : ""}
+        <>
+          <Link
+            to={`/movie/${movie.id}`}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <div className="cards">
+              <img
+                className="cards__img"
+                src={`https://image.tmdb.org/t/p/original${movie ? movie.poster_path : ""
+                  }`}
+              />
+              <div className="cards__overlay">
+                <div className="card__title">
+                  {movie ? movie.original_title : ""}
+                </div>
+                <div className="card__runtime">
+                  {movie ? movie.release_date : ""}
+                  <span className="card__rating">
+                    {movie ? movie.vote_average : ""}
+                    <i className="fas fa-star" />
+                  </span>
+                </div>
+                <div className="card__description">
+                  {movie ? movie.overview.slice(0, 118) + "..." : ""}
+                </div>
               </div>
-              <div className="card__runtime">
-                {movie ? movie.release_date : ""}
-                <span className="card__rating">
-                  {movie ? movie.vote_average : ""}
-                  <i className="fas fa-star" />
-                </span>
-              </div>
-              <div className="card__description">
-                {movie ? movie.overview.slice(0, 118) + "..." : ""}
-              </div>
+
             </div>
-          </div>
-        </Link>
+          </Link>
+          {/* <button className="btn-btn primary" onClick={handleAddToWatchlist}>Add to Watchlist</button> */}
+        </>
       )}
+
     </>
   );
 };

@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import './Header.css'
 import LiveSearchResults from "../search/LiveSearchResults";
+import MovieList from "../movieList/MovieList";
 
 
 const StyledToolBar = styled(Toolbar)`
@@ -42,13 +43,12 @@ const StyledToolBar = styled(Toolbar)`
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
-
   const [liveSearchResults, setLiveSearchResults] = useState([]);
+  const [movieType, setMovieType] = useState([]);
   const navigate = useNavigate();
-  const searchInputRef = useRef(null);
-  const anchorRef = useRef(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [value, setValue] = useState('');
+  const anchorRef = useRef(null);
+  const searchInputRef = useRef(null)
 
 
   useEffect(() => {
@@ -85,9 +85,9 @@ const Navbar = () => {
   const handleChange = async (event) => {
     setSearchTerm(event.target.value);
     if (event.target.value.trim() === "") {
-      setLiveSearchResults([]);
+
       return;
-    }
+    } setLiveSearchResults([]);
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=4e44d9029b1270a757cddc766a1bcb63&query=${event.target.value}`
@@ -108,10 +108,13 @@ const Navbar = () => {
     setOpenMenu(prev => !prev);
   };
 
-  const handleClearSearch = (event) => {
-    event.preventDefault();
-    setValue('');
-  };
+  useEffect(() => {
+
+    navigate(`movies/${movieType}`);
+    setOpenMenu(false);
+
+  }, [movieType]);
+
   return (
     <div>
       {/* <div className="row p-2 pt-3 pb-3 d-flex align-items-center"> */}
@@ -129,9 +132,9 @@ const Navbar = () => {
           </Box>
 
           <Menu anchorEl={anchorRef.current} open={openMenu} onClose={() => setOpenMenu(false)}>
-            <MenuItem onClick={() => navigate("/movies/popular")}>Popular</MenuItem>
-            <MenuItem onClick={() => navigate("/movies/upcoming")}>Upcoming</MenuItem>
-            <MenuItem onClick={() => navigate("/movies/top_rated")}>Top_Rated</MenuItem>
+            <MenuItem onClick={() => setMovieType("popular")}>Popular</MenuItem>
+            <MenuItem onClick={() => setMovieType("upcoming")}>Upcoming</MenuItem>
+            <MenuItem onClick={() => setMovieType("top_rated")}>Top_Rated</MenuItem>
           </Menu>
 
           <div ref={searchInputRef} className="input-group">
@@ -141,11 +144,7 @@ const Navbar = () => {
               placeholder="Search for..."
               value={searchTerm}
               onChange={handleChange}
-              InputProps={{
-                endAdornment: value && (
-                  <Clear className="clear-icon" onMouseDown={(event) => handleClearSearch(event)} />
-                ),
-              }}
+
             />
             <span>
               <button
@@ -200,6 +199,8 @@ const Navbar = () => {
 
       <Routes>
         <Route path="/search" element={<SearchResults movies={movies} />} />
+
+
       </Routes>
     </div >
   );

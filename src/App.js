@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { useState } from "react";
 import Header from "./component/header/Header";
 import MovieList from "./component/movieList/MovieList";
 import Footer from "./component/footer/Footer";
@@ -14,6 +14,7 @@ import MovieDetail from "./component/movieDetail/MovieDetail";
 
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -23,9 +24,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/register" element={<Form />} />
           <Route path="/login" element={<Login />} />
-
+          <Route path="/movies/:type" element={<MovieList />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
-          <Route path="movies/:type" element={<MovieList />} />
+
         </Routes>
       </BrowserRouter>
       <Footer />

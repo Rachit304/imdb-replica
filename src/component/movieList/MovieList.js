@@ -11,6 +11,7 @@ const MovieList = () => {
   const [totalPages, setTotalPages] = useState(0);
   const { type } = useParams();
 
+
   useEffect(() => {
     setIsLoading(true);
     setPage(1);
@@ -26,8 +27,7 @@ const MovieList = () => {
 
   const getData = () => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${
-        type ? type : "popular"
+      `https://api.themoviedb.org/3/movie/${type ? type : "popular"
       }?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US&page=${page}`
     )
       .then((res) => res.json())
@@ -65,10 +65,10 @@ const MovieList = () => {
       <div className="list__cards">
         {isLoading
           ? Array.from({ length: 10 }).map((_, index) => (
-              <div key={index} className="skeleton-card">
-                <Skeleton height={300} duration={2} />
-              </div>
-            ))
+            <div key={index} className="skeleton-card">
+              <Skeleton height={300} duration={2} />
+            </div>
+          ))
           : movieList.map((movie) => <Card key={movie.id} movie={movie} />)}
       </div>
     </div>
